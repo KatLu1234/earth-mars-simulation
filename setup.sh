@@ -6,6 +6,12 @@
 
 set -e # 에러 발생 시 즉시 중단
 
+# 스크립트 자신이 위치한 디렉토리 (이후 cd 로 작업 경로가 바뀌어도 유지)
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+echo "[0/4] 시뮬레이션 셸 스크립트에 실행 권한 부여..."
+chmod +x "$SCRIPT_DIR"/*.sh
+
 echo "[1/4] 시스템 패키지 업데이트 및 기본 필수 도구 설치..."
 apt-get update
 apt-get install -y apt-transport-https ca-certificates
