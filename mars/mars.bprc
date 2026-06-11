@@ -1,4 +1,8 @@
 1
+a scheme ipn 'ipnfw' 'ipnadminep'
+a endpoint ipn:4.0 q
+a endpoint ipn:4.1 q
+a endpoint ipn:4.2 q
 a protocol ltp 1400 100
 a induct ltp 4 ""
 a outduct ltp 3 ""
