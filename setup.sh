@@ -7,7 +7,9 @@
 set -e # 에러 발생 시 즉시 중단
 
 echo "[1/4] 시스템 패키지 업데이트 및 기본 필수 도구 설치..."
-apt-get update && apt-get install -y \\
+apt-get update
+apt-get install -y apt-transport-https ca-certificates
+apt-get install -y \\
     git \\
     build-essential \\
     cmake \\
