@@ -1,0 +1,7 @@
+1 3 ""
+s
+a contact +0 +3600 3 2 1000000
+a contact +0 +3600 3 4 10000000
+a range +0 +3600 3 2 666
+a range +0 +3600 3 4 1
+m start

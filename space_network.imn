@@ -1,0 +1,121 @@
+# github.com/coreemu/core
+# CORE Internetwork Mission File (.imn)
+canvas c1 {
+    name {Canvas1}
+}
+
+option gui {
+    controlnet {172.16.0.0/24}
+    controlnet_updown_script {}
+    enableschmecl {0}
+    showchemecl {0}
+    zoom {1.0}
+}
+
+node n1 {
+    type router
+    model host
+    name Earth_Station
+    canvas c1
+    iconcoords {150.0 250.0}
+    labelcoords {150.0 280.0}
+    interface-peer {e0 n2}
+    services {DefaultRoute UserDefined}
+}
+
+node n2 {
+    type router
+    model host
+    name Earth_Orbiter
+    canvas c1
+    iconcoords {350.0 250.0}
+    labelcoords {350.0 280.0}
+    interface-peer {e0 n1}
+    interface-peer {e1 n3}
+    services {DefaultRoute UserDefined}
+}
+
+node n3 {
+    type router
+    model host
+    name Mars_Orbiter
+    canvas c1
+    iconcoords {550.0 250.0}
+    labelcoords {550.0 280.0}
+    interface-peer {e0 n2}
+    interface-peer {e1 n4}
+    services {DefaultRoute UserDefined}
+}
+
+node n4 {
+    type router
+    model host
+    name Mars_Lander
+    canvas c1
+    iconcoords {750.0 250.0}
+    labelcoords {750.0 280.0}
+    interface-peer {e0 n3}
+    services {DefaultRoute UserDefined}
+}
+
+link l1 {
+    nodes {n1 n2}
+    bandwidth 100000000
+    delay 0
+    loss 0
+    duplicate 0
+    jitter 0
+    opaque false
+}
+
+link l2 {
+    nodes {n2 n3}
+    bandwidth 100000000
+    delay 0
+    loss 0
+    duplicate 0
+    jitter 0
+    opaque false
+}
+
+link l3 {
+    nodes {n3 n4}
+    bandwidth 100000000
+    delay 0
+    loss 0
+    duplicate 0
+    jitter 0
+    opaque false
+}
+
+annotation a1 {
+    type text
+    iconcoords {150.0 180.0}
+    label {IPN: 1.1}
+    canvas c1
+}
+
+annotation a2 {
+    type text
+    iconcoords {350.0 180.0}
+    label {IPN: 2.1}
+    canvas c1
+}
+
+annotation a3 {
+    type text
+    iconcoords {550.0 180.0}
+    label {IPN: 3.1}
+    canvas c1
+}
+
+annotation a4 {
+    type text
+    iconcoords {750.0 180.0}
+    label {IPN: 4.1}
+    canvas c1
+}
+
+canvas c1 {
+    size {900 500}
+}
