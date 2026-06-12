@@ -241,6 +241,29 @@ chmod +x lib_nodes.sh send.sh receive.sh read_node.sh
 
 ---
 
+## 5-4. 노드 상태 확인 (`node_status.sh`)
+
+폴더 구조의 설정 파일을 읽어 **정적 토폴로지**를 보여주고, CORE 세션이 떠 있으면
+각 노드 ION 의 **실시간 상태**까지 확인합니다.
+
+```bash
+chmod +x node_status.sh
+
+./node_status.sh            # 전체: 정적 토폴로지 + 실시간 상태 요약 (기본)
+./node_status.sh topo       # 정적 토폴로지만 (ION 미실행 상태에서도 동작)
+./node_status.sh live       # 실시간 요약 (노드별 RUNNING/DOWN + 접촉/보관번들 수)
+./node_status.sh tree       # 프로젝트/노드 폴더 구조
+./node_status.sh earth      # 특정 노드 상세 (contact/range/induct/plan/span/bplist/bpstats)
+```
+
+- `topo` / `tree` 는 ION 이 떠 있지 않아도(=폴더만 있으면) 동작합니다.
+- `live` / `<node>` 는 `/tmp/pycore.*` 세션과 기동된 ION 이 있어야 실시간 값을 보여줍니다.
+- 보여주는 정보: 노드별 IPN 번호·설정파일 유무, 접촉계획(`a contact`)의 대역폭/전파지연,
+  IPN egress 경로(`a plan`), LTP span 피어 주소, BP 엔드포인트, 그리고 실행 중이라면
+  현재 적재된 contact/range·induct/outduct·보관 번들(bplist)·BP 통계(bpstats).
+
+---
+
 ## 6. 파일 구조
 
 ```
@@ -252,6 +275,7 @@ earth-mars-simulation/
 ├── run_simulation.sh      # 42 + 브릿지 통합 실행 + 종료 정리
 ├── bridging.py            # 42(TCP)→거리/가시성 계산→tc/ionadmin 반영
 ├── lib_nodes.sh           # 공통 노드 매핑 + ION 실행 헬퍼 (송수신 스크립트가 source)
+├── node_status.sh         # 노드 상태 확인 (정적 토폴로지 + 실시간 ION 상태)
 ├── send.sh                # 노드 간 텍스트/파일 송신 (bpsource/bpsendfile)
 ├── receive.sh             # 노드에서 번들 수신·저장 (bpsink/bprecvfile)
 ├── read_node.sh           # 노드에 저장/수신된 데이터 읽기 (bplist 포함)
@@ -269,4 +293,4 @@ earth-mars-simulation/
 - [D3f0/coreemu_vnc — GitHub](https://github.com/D3f0/coreemu_vnc)
 - [CORE Network Emulator](https://github.com/coreemu/core)
 - [NASA 42 Simulator](https://github.com/ericstoneking/42)
-- [NASA JPL ION-DTN](https://sourceforge.net/projects/ion-dtn/)
+- [NASA JPL ION-DTN](https://github.com/nasa-jpl/ION-DTN)
